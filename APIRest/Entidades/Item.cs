@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace APIRest.Entidades
 {
-    [Table("products",Schema="production")]
+    //[Table("products",Schema="production")]
     public class Item
     {
-        [Key]
+        //[Key]
         public int product_id { get; set; }
         public string product_name { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

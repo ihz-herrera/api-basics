@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace APIRest.Entidades
 {
-	[Table("Orders",Schema ="sales")]
+	//[Table("Orders",Schema ="sales")]
     public class Order
     {
-		[Key]
-		[Column("order_id")]
+		//[Key]
+		//[Column("order_id")]
 		public int OrderId { get; set; }
 
 		public int? customer_id { get; set; }

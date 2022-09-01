@@ -1,5 +1,6 @@
 using APIRest.Contextos;
 using APIRest.Entidades;
+using APIRest.Extenciones;
 using APIRest.Seguridad;
 using APIRest.Validadores;
 using FluentValidation;
@@ -25,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace APIRest
@@ -42,9 +44,17 @@ namespace APIRest
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+
+            services.AddControllersWithViews().AddNewtonsoftJson(options=> options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddControllers().AddXmlSerializerFormatters();
+           // services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             var cnnString = Configuration.GetConnectionString("MSSqlServer");
-            services.AddDbContext<Context>(optionsBuilder => optionsBuilder.UseSqlServer(cnnString));
-            services.AddScoped<Context>();
+
+            services.ConfigurarContextDatos(cnnString)
+                .AddScoped<Context>();
 
             //Review: Configurar Autenticacion Basica
             services.AddAuthentication("BasicAuthentication")

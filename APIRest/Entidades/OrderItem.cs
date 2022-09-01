@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace APIRest.Entidades
 {
-    [Table("order_items",Schema="sales")]
+    //[Table("order_items",Schema="sales")]
     public class OrderItem
     {
 
-        [Key]
-        public int line_id { get; set; }
+        //[Key]
+        //public int line_id { get; set; }
 
-        [Column("order_id")]
+        //[Column("order_id")]
         public int OrderId { get; set; }
         public int item_id { get; set; }
         
@@ -22,7 +22,7 @@ namespace APIRest.Entidades
         public decimal list_price { get; set; }
         public decimal discount { get; set; }
 
-        [ForeignKey("Item")]
+        //[ForeignKey("Item")]
         public int product_id { get; set; }
         public Item Item { get; set; }
 
